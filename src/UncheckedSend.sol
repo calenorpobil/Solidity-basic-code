@@ -23,7 +23,6 @@ contract UncheckedSendVulnerability {
     }
 }
 
-
 contract UncheckedSendOptimizado {
     mapping(address => uint256) private balances;
 
@@ -38,8 +37,8 @@ contract UncheckedSendOptimizado {
         balances[msg.sender] -= _amount;
 
         // Usamos call() y verificamos el resultado
-        (bool success, ) = payable(msg.sender).call{value: _amount}("");
-        
+        (bool success,) = payable(msg.sender).call{value: _amount}("");
+
         require(success, "Transferencia fallida");
     }
 

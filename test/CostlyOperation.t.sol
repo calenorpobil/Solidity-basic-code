@@ -5,7 +5,6 @@ import "forge-std/Test.sol";
 import "../src/CostlyOperation.sol";
 import "forge-std/console2.sol";
 
-
 contract CostlyOperationVulnerabilityTest is Test {
     CostlyOperationVulnerability public costlyOperationVulnerability;
 
@@ -17,7 +16,7 @@ contract CostlyOperationVulnerabilityTest is Test {
         costlyOperationVulnerability.addNumber(10);
         costlyOperationVulnerability.addNumber(20);
         costlyOperationVulnerability.addNumber(30);
-        
+
         assertEq(costlyOperationVulnerability.getLength(), 3);
     }
 
@@ -26,7 +25,7 @@ contract CostlyOperationVulnerabilityTest is Test {
         costlyOperationVulnerability.addNumber(10);
         costlyOperationVulnerability.addNumber(20);
         costlyOperationVulnerability.addNumber(30);
-        
+
         // Check sum
         uint256 sum = costlyOperationVulnerability.sumAll();
         console2.log("Sum:", sum);
@@ -38,14 +37,13 @@ contract CostlyOperationVulnerabilityTest is Test {
         costlyOperationVulnerability.addNumber(10);
         costlyOperationVulnerability.addNumber(20);
         costlyOperationVulnerability.addNumber(30);
-        
+
         // Find number
         uint256 index = costlyOperationVulnerability.findNumber(20);
         console2.log("Index of 20:", index);
         assertEq(index, 1);
     }
 }
-
 
 contract CostlyOperationOptimizadoTest is Test {
     CostlyOperationOptimizado public costlyOperationOptimizado;
@@ -58,7 +56,7 @@ contract CostlyOperationOptimizadoTest is Test {
         costlyOperationOptimizado.addNumber(10);
         costlyOperationOptimizado.addNumber(20);
         costlyOperationOptimizado.addNumber(30);
-        
+
         assertEq(costlyOperationOptimizado.getLength(), 3);
     }
 
@@ -67,7 +65,7 @@ contract CostlyOperationOptimizadoTest is Test {
         costlyOperationOptimizado.addNumber(10);
         costlyOperationOptimizado.addNumber(20);
         costlyOperationOptimizado.addNumber(30);
-        
+
         // Check sum - O(1) operation
         uint256 sum = costlyOperationOptimizado.sumAll();
         console2.log("Sum:", sum);
@@ -79,7 +77,7 @@ contract CostlyOperationOptimizadoTest is Test {
         costlyOperationOptimizado.addNumber(10);
         costlyOperationOptimizado.addNumber(20);
         costlyOperationOptimizado.addNumber(30);
-        
+
         // Find number - O(1) operation using mapping
         uint256 index = costlyOperationOptimizado.findNumber(20);
         console2.log("Index of 20:", index);

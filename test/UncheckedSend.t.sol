@@ -5,7 +5,6 @@ import "forge-std/Test.sol";
 import "../src/UncheckedSend.sol";
 import "forge-std/console2.sol";
 
-
 contract UncheckedSendVulnerabilityTest is Test {
     UncheckedSendVulnerability public uncheckedSendVulnerability;
 
@@ -25,17 +24,16 @@ contract UncheckedSendVulnerabilityTest is Test {
     function test_withdraw() external {
         // Log initial balance
         console2.log("Balance:", uncheckedSendVulnerability.getBalance());
-        
+
         // First deposit some ETH to have a balance
         uncheckedSendVulnerability.deposit{value: 10 ether}();
         console2.log("Balance:", uncheckedSendVulnerability.getBalance());
-        
+
         // Then withdraw
         uncheckedSendVulnerability.withdraw(1 ether);
         console2.log("Balance:", uncheckedSendVulnerability.getBalance());
     }
 }
-
 
 contract UncheckedSendOptimizadoTest is Test {
     UncheckedSendOptimizado public uncheckedSendOptimizado;
@@ -57,7 +55,7 @@ contract UncheckedSendOptimizadoTest is Test {
         // First deposit some ETH to have a balance
         uncheckedSendOptimizado.deposit{value: 1.01 ether}();
         console2.log("Balance:", uncheckedSendOptimizado.getBalance());
-        
+
         // Then withdraw
         uncheckedSendOptimizado.withdraw(1.01 ether);
         console2.log("Balance:", uncheckedSendOptimizado.getBalance());

@@ -5,21 +5,20 @@ import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
 import "./interfaces/IERC20.sol";
 
-
 contract ForkDaiTest is Test {
     IERC20 public dai;
 
     function setUp() public {
         //Esta dirección es la de DAI:
-        dai = IERC20(address(0x6B175474E89094C44Da98b954EedeAC495271d0F)); 
+        dai = IERC20(address(0x6B175474E89094C44Da98b954EedeAC495271d0F));
     }
 
-    function testAddress() public view {        
-        //Para conseguir la dirección del contrato: 
-        console.log(address(this));         
+    function testAddress() public view {
+        //Para conseguir la dirección del contrato:
+        console.log(address(this));
     }
 
-    function testDeposit() public {        
+    function testDeposit() public {
         address andrea = address(123);
 
         uint256 balanceInicial = dai.balanceOf(andrea);
@@ -36,7 +35,6 @@ contract ForkDaiTest is Test {
         uint256 totalFinal = dai.totalSupply();
         console.log("Total final:", totalFinal / 1e18);
     }
-
 }
 
 // Alchemy API Key: I3zuEBuwYBz_y6vpwuchC

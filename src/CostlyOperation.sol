@@ -33,7 +33,6 @@ contract CostlyOperationVulnerability {
     }
 }
 
-
 contract CostlyOperationOptimizado {
     uint256[] private numbers;
     mapping(uint256 => uint256) private numberIndex;

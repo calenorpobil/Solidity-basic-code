@@ -2,28 +2,27 @@
 pragma solidity ^0.8;
 
 contract RandomnessVulnerable {
-    uint private seed;
-    uint public randomNumber;
+    uint256 private seed;
+    uint256 public randomNumber;
 
     constructor() {
         seed = block.timestamp; //Establecemos el valor de la semilla
     }
 
     function generateRandomNumber() public {
-        randomNumber = uint(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, seed)));
+        randomNumber = uint256(keccak256(abi.encodePacked(block.prevrandao, block.timestamp, seed)));
     }
 }
 
-
-//Modo seguro: 
+//Modo seguro:
 interface RandomnessOracle {
-    function getRandomNumber() external returns (uint);
+    function getRandomNumber() external returns (uint256);
 }
 
 contract RandomnessOptimizado {
-    //Será una interfaz de un oráculo externo, que asegure la aleatoriedad. 
+    //Será una interfaz de un oráculo externo, que asegure la aleatoriedad.
     uint256 public randomNumber;
-    address private oracle; 
+    address private oracle;
 
     constructor(address _oracleAddress) {
         oracle = _oracleAddress;
