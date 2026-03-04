@@ -17,11 +17,11 @@ contract ForkTest is Test {
         weth = IWETH(address(1));
     }
 
-    function testDeposit() public view {
+    function testDeposit() public {
         uint256 balanceInicial = weth.balanceOf(address(this));
         console.log("Balance inicial: ", balanceInicial);
 
-        weth.deposit{value: 500};
+        weth.deposit{value: 500}();
 
         uint256 balanceFinal = weth.balanceOf(address(this));
         console.log("Balance final: ", balanceFinal);
