@@ -55,10 +55,10 @@ contract UserCrud {
     }
 
     // Traer todos los registros activos
-    function getAllActiveUsers() public view returns(User[] memory) {
+    function getAllActiveUsers() public view returns (User[] memory) {
         uint256 activeCount = 0;
-        for(uint256 i = 1; i <= nextId; i++){
-            if(users[i].isActive){
+        for (uint256 i = 1; i <= nextId; i++) {
+            if (users[i].isActive) {
                 activeCount++;
             }
         }
@@ -66,7 +66,7 @@ contract UserCrud {
         User[] memory activeUsers = new User[](activeCount);
         uint256 index = 0;
         for (uint256 i = 1; i <= nextId; i++) {
-            if (users[i].isActive){
+            if (users[i].isActive) {
                 activeUsers[index] = users[i];
                 index++;
             }

@@ -15,7 +15,7 @@ contract CRUDTest is Test {
 
     function test_CreateUser() public {
         userCrud.createUser("Alice", 25);
-        
+
         UserCrud.User memory user = userCrud.readUser(1);
         assertEq(user.id, 1);
         assertEq(user.name, "Alice");
@@ -46,7 +46,7 @@ contract CRUDTest is Test {
     function testFuzz_CreateUser(string memory _name, uint256 _age) public {
         vm.assume(bytes(_name).length > 0);
         userCrud.createUser(_name, _age);
-        
+
         UserCrud.User memory user = userCrud.readUser(1);
         assertEq(user.name, _name);
         assertEq(user.age, _age);
@@ -56,7 +56,7 @@ contract CRUDTest is Test {
 
     function test_ReadUser() public {
         userCrud.createUser("Alice", 25);
-        
+
         UserCrud.User memory user = userCrud.readUser(1);
         assertEq(user.id, 1);
         assertEq(user.name, "Alice");
@@ -72,7 +72,7 @@ contract CRUDTest is Test {
     function test_ReadUser_DeletedUser() public {
         userCrud.createUser("Alice", 25);
         userCrud.deleteUser(1);
-        
+
         vm.expectRevert("El usuario esta inactivo");
         userCrud.readUser(1);
     }
@@ -82,7 +82,7 @@ contract CRUDTest is Test {
     function test_UpdateUser() public {
         userCrud.createUser("Alice", 25);
         userCrud.updateUser(1, "Alice Updated", 26);
-        
+
         UserCrud.User memory user = userCrud.readUser(1);
         assertEq(user.name, "Alice Updated");
         assertEq(user.age, 26);
@@ -96,14 +96,14 @@ contract CRUDTest is Test {
     function test_UpdateUser_DeletedUser() public {
         userCrud.createUser("Alice", 25);
         userCrud.deleteUser(1);
-        
+
         vm.expectRevert("El usuario esta inactivo");
         userCrud.updateUser(1, "New Name", 30);
     }
 
     function test_UpdateUser_EventEmission() public {
         userCrud.createUser("Alice", 25);
-        
+
         vm.expectEmit(true, false, false, true);
         emit UserCrud.UserUpdated(1, "Alice Updated", 26);
         userCrud.updateUser(1, "Alice Updated", 26);
@@ -113,7 +113,7 @@ contract CRUDTest is Test {
         vm.assume(bytes(_newName).length > 0);
         userCrud.createUser("Alice", 25);
         userCrud.updateUser(1, _newName, _newAge);
-        
+
         UserCrud.User memory user = userCrud.readUser(1);
         assertEq(user.name, _newName);
         assertEq(user.age, _newAge);
@@ -124,7 +124,7 @@ contract CRUDTest is Test {
     function test_DeleteUser() public {
         userCrud.createUser("Alice", 25);
         userCrud.deleteUser(1);
-        
+
         vm.expectRevert("El usuario esta inactivo");
         userCrud.readUser(1);
     }
@@ -137,14 +137,14 @@ contract CRUDTest is Test {
     function test_DeleteUser_AlreadyDeleted() public {
         userCrud.createUser("Alice", 25);
         userCrud.deleteUser(1);
-        
+
         vm.expectRevert("El usuario esta inactivo");
         userCrud.deleteUser(1);
     }
 
     function test_DeleteUser_EventEmission() public {
         userCrud.createUser("Alice", 25);
-        
+
         vm.expectEmit(true, false, false, true);
         emit UserCrud.UserDeleted(1);
         userCrud.deleteUser(1);
@@ -159,7 +159,7 @@ contract CRUDTest is Test {
 
     function test_GetAllActiveUsers_SingleUser() public {
         userCrud.createUser("Alice", 25);
-        
+
         UserCrud.User[] memory activeUsers = userCrud.getAllActiveUsers();
         assertEq(activeUsers.length, 1);
         assertEq(activeUsers[0].name, "Alice");
@@ -169,7 +169,7 @@ contract CRUDTest is Test {
         userCrud.createUser("Alice", 25);
         userCrud.createUser("Bob", 30);
         userCrud.createUser("Charlie", 35);
-        
+
         UserCrud.User[] memory activeUsers = userCrud.getAllActiveUsers();
         assertEq(activeUsers.length, 3);
     }
@@ -178,9 +178,9 @@ contract CRUDTest is Test {
         userCrud.createUser("Alice", 25);
         userCrud.createUser("Bob", 30);
         userCrud.createUser("Charlie", 35);
-        
+
         userCrud.deleteUser(2); // Delete Bob
-        
+
         UserCrud.User[] memory activeUsers = userCrud.getAllActiveUsers();
         assertEq(activeUsers.length, 2);
         assertEq(activeUsers[0].name, "Alice");
@@ -190,10 +190,10 @@ contract CRUDTest is Test {
     function test_GetAllActiveUsers_AllDeleted() public {
         userCrud.createUser("Alice", 25);
         userCrud.createUser("Bob", 30);
-        
+
         userCrud.deleteUser(1);
         userCrud.deleteUser(2);
-        
+
         UserCrud.User[] memory activeUsers = userCrud.getAllActiveUsers();
         assertEq(activeUsers.length, 0);
     }
