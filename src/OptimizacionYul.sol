@@ -28,23 +28,23 @@ contract ContratoOptimizado {
         }
     }
 
-
-// 2 Unchecked Solidity
-    function uncheckedSolidity() public pure  {
+    // 2 Unchecked Solidity
+    function uncheckedSolidity() public pure {
         uint256 j = 0;
-        for (uint256 i = 0; i < 10; ) {
+        for (uint256 i = 0; i < 10;) {
             j++;
             unchecked {
                 ++i;
             }
         }
     }
-// 2 Unchecked YUL
+
+    // 2 Unchecked YUL
     function uncheckedYul() public pure {
         assembly {
             let j := 0
 
-            for{
+            for {
                 let i := 0
             } lt(i, 10) {
                 i := add(i, 0x01)
@@ -54,8 +54,8 @@ contract ContratoOptimizado {
         }
     }
 
-// 3 Operaciones matematicas YUL
-    function operacionesMatematicasYul(uint256 a, uint256 b) public  {
+    // 3 Operaciones matematicas YUL
+    function operacionesMatematicasYul(uint256 a, uint256 b) public {
         // Restar
         assembly {
             let c := sub(a, b)
@@ -67,8 +67,8 @@ contract ContratoOptimizado {
             }
         }
     }
-    
-// 4 Almacenamiento de variables YUL
+
+    // 4 Almacenamiento de variables YUL
 
     address owner = 0x1234567890123456789012345678901234567890;
 

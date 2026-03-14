@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 
 import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
-import "./interfaces/IERC20.sol";
+import "src/interfaces/IERC20.sol";
 
 contract ForkDaiTest is Test {
     IERC20 public dai;
