@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8;
 
-
 import "./interfaces/IERC20.sol";
 import "./interfaces/IERC20Metadata.sol";
 
@@ -89,7 +88,7 @@ contract ERC20 is IERC20, IERC20Metadata {
         require(_from != address(0), "ERC20: transfer from the zero address");
         require(_to != address(0), "ERC20: transfer to the zero address");
 
-        uint fromBalance = _balances[_from];
+        uint256 fromBalance = _balances[_from];
         require(_balances[_from] >= _amount, "ERC20: transfer amount exceeds balance");
 
         unchecked {
@@ -100,7 +99,7 @@ contract ERC20 is IERC20, IERC20Metadata {
         emit Transfer(_from, _to, _amount);
     }
 
-    function  _spendAllowance(address _owner, address _spender, uint256 _amount) internal {
+    function _spendAllowance(address _owner, address _spender, uint256 _amount) internal {
         uint256 currentAllowance = _allowances[_owner][_spender];
 
         if (currentAllowance != type(uint256).max) {
@@ -137,6 +136,4 @@ contract ERC20 is IERC20, IERC20Metadata {
         // No es lo mismo que "crear nuevos tokens" en la práctica
         _mint(_account, _amount);
     }
-
-
 }
