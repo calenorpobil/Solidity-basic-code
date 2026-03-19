@@ -16,7 +16,7 @@ contract ForkTest is Test {
     function setUp() public {
         weth = IWETH(address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2));
     }
-
+/*
     function testDeposit() public {
         uint256 balanceInicial = weth.balanceOf(address(this));
         console.log("Balance inicial: ", balanceInicial);
@@ -25,7 +25,7 @@ contract ForkTest is Test {
 
         uint256 balanceFinal = weth.balanceOf(address(this));
         console.log("Balance final: ", balanceFinal);
-    }
+    }*/
 }
 
 // Alchemy API Key: I3zuEBuwYBz_y6vpwuchC

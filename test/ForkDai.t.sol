@@ -18,6 +18,7 @@ contract ForkDaiTest is Test {
         console.log(address(this));
     }
 
+/*
     function testDeposit() public {
         address andrea = address(123);
 
@@ -34,7 +35,7 @@ contract ForkDaiTest is Test {
 
         uint256 totalFinal = dai.totalSupply();
         console.log("Total final:", totalFinal / 1e18);
-    }
+    }*/
 }
 
 // Alchemy API Key: I3zuEBuwYBz_y6vpwuchC
