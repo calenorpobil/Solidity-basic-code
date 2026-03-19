@@ -14,7 +14,7 @@ contract ForkTest is Test {
     IWETH public weth;
 
     function setUp() public {
-        weth = IWETH(address(1));
+        weth = IWETH(address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2));
     }
 
     function testDeposit() public {

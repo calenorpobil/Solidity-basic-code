@@ -23,12 +23,16 @@ contract BilleteraTest is Test {
         //Version 1
         //Prank hace que el propietario sea la dirección dada por una línea:
         vm.prank(address(1));
+        vm.expectRevert("No se pudo verificar al propietario. ");
         billetera.setOwner(address(1));
 
         vm.startPrank(address(1));
 
+        vm.expectRevert("No se pudo verificar al propietario. ");
         billetera.setOwner(address(1));
+        vm.expectRevert("No se pudo verificar al propietario. ");
         billetera.setOwner(address(1));
+        vm.expectRevert("No se pudo verificar al propietario. ");
         billetera.setOwner(address(1));
 
         vm.stopPrank();

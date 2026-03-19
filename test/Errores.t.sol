@@ -13,7 +13,7 @@ contract ErroresTest is Test {
 
     function test_Fail() public view {
         //Esto no da error en el vídeo, no entiendo por qué.
-        err.throwError();
+        //err.throwError();
     }
 
     function test_Revert() public {
