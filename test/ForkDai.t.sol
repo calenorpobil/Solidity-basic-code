@@ -18,24 +18,24 @@ contract ForkDaiTest is Test {
         console.log(address(this));
     }
 
-/*
-    function testDeposit() public {
-        address andrea = address(123);
+    /*
+        function testDeposit() public {
+            address andrea = address(123);
 
-        uint256 balanceInicial = dai.balanceOf(andrea);
-        console.log("Balance inicial:", balanceInicial / 1e18);
+            uint256 balanceInicial = dai.balanceOf(andrea);
+            console.log("Balance inicial:", balanceInicial / 1e18);
 
-        uint256 totalInicial = dai.totalSupply();
-        console.log("Total inicial:", totalInicial / 1e18);
+            uint256 totalInicial = dai.totalSupply();
+            console.log("Total inicial:", totalInicial / 1e18);
 
-        deal(address(dai), andrea, 1e6 * 1e18, true);
+            deal(address(dai), andrea, 1e6 * 1e18, true);
 
-        uint256 balanceFinal = dai.balanceOf(andrea);
-        console.log("Balance final:", balanceFinal / 1e18);
+            uint256 balanceFinal = dai.balanceOf(andrea);
+            console.log("Balance final:", balanceFinal / 1e18);
 
-        uint256 totalFinal = dai.totalSupply();
-        console.log("Total final:", totalFinal / 1e18);
-    }*/
+            uint256 totalFinal = dai.totalSupply();
+            console.log("Total final:", totalFinal / 1e18);
+        }*/
 }
 
 // Alchemy API Key: I3zuEBuwYBz_y6vpwuchC
