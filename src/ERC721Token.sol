@@ -11,12 +11,12 @@ contract ERC721Token is ERC165, IERC721 {
     mapping(uint256 => address) private _tokenApprovals;
     mapping(address => mapping(address => bool)) private _operatorApprovals;
 
-    function balanceOf(address owner) public view virtual override returns (uint256){
+    function balanceOf(address owner) public view virtual override returns (uint256) {
         require(owner != address(0), "ERC721 ERROR: Address zero");
         return _balances[owner];
     }
 
-    function ownerOf(uint256 tokenId) public view virtual override returns (address){
+    function ownerOf(uint256 tokenId) public view virtual override returns (address) {
         address owner = _owners[tokenId];
         require(owner != address(0), "ERC721 ERROR: Invalid token ID");
         return owner;
@@ -26,11 +26,11 @@ contract ERC721Token is ERC165, IERC721 {
         address owner = ownerOf(tokenId);
         require(to != owner, "ERC721 ERROR: Approval to current owner");
         require(
-            msg.sender == owner || isApprovedForAll(owner, msg.sender), 
+            msg.sender == owner || isApprovedForAll(owner, msg.sender),
             "ERC721 ERROR: Approve caller is not owner nor approved for all"
         );
 
-        _approve(to, tokenId);    
+        _approve(to, tokenId);
     }
 
     function _approve(address to, uint256 tokenId) internal {
@@ -70,12 +70,13 @@ contract ERC721Token is ERC165, IERC721 {
 
     function _safeTransfer(address from, address to, uint256 tokenId, bytes memory _data) internal {
         _transfer(from, to, tokenId);
-        require(_checkOnERC721Received(from, to, tokenId, _data), "ERC721 ERROR: Transfer to non ERC721Receiver implementer");
+        require(
+            _checkOnERC721Received(from, to, tokenId, _data), "ERC721 ERROR: Transfer to non ERC721Receiver implementer"
+        );
     }
 
     function transferFrom(address from, address to, uint256 tokenId) public virtual override {
-        require(_isApprovedOrOwner(msg.sender, tokenId), 
-            "ERC721 ERROR: Caller is not token owner nor approved");
+        require(_isApprovedOrOwner(msg.sender, tokenId), "ERC721 ERROR: Caller is not token owner nor approved");
         _transfer(from, to, tokenId);
     }
 
@@ -84,7 +85,7 @@ contract ERC721Token is ERC165, IERC721 {
         require(to != address(0), "ERC721 ERROR: Transfer to the zero address");
 
         _beforeTokenTransfer(from, to, tokenId);
-        
+
         _approve(address(0), tokenId);
 
         _balances[from] -= 1;
@@ -94,8 +95,7 @@ contract ERC721Token is ERC165, IERC721 {
         emit Transfer(from, to, tokenId);
     }
 
-    // El código a partir de aquí es autogenerado, se escribirá en siguientes commits. 
-
+    // El código a partir de aquí es autogenerado, se escribirá en siguientes commits.
 
     function _safeMint(address to, uint256 tokenId) public {
         _safeMint(to, tokenId, "");
@@ -103,8 +103,10 @@ contract ERC721Token is ERC165, IERC721 {
 
     function _safeMint(address to, uint256 tokenId, bytes memory data) public {
         _mint(to, tokenId);
-        require(_checkOnERC721Received(address(0), to, tokenId, data), 
-            "ERC721 ERROR: Transfer to non ERC721Receiver implementer");
+        require(
+            _checkOnERC721Received(address(0), to, tokenId, data),
+            "ERC721 ERROR: Transfer to non ERC721Receiver implementer"
+        );
     }
 
     function _mint(address to, uint256 tokenId) internal virtual {
@@ -118,11 +120,12 @@ contract ERC721Token is ERC165, IERC721 {
         emit Transfer(address(0), to, tokenId);
     }
 
-    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory _data) 
-    private returns (bool) {
+    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory _data)
+        private
+        returns (bool)
+    {
         if (isContract(to)) {
-            try IERC721Receiver(to).onERC721Received(msg.sender, from, tokenId, _data) 
-            returns (bytes4 retval) {
+            try IERC721Receiver(to).onERC721Received(msg.sender, from, tokenId, _data) returns (bytes4 retval) {
                 return retval == IERC721Receiver.onERC721Received.selector;
             } catch (bytes memory reason) {
                 if (reason.length == 0) {
@@ -139,9 +142,9 @@ contract ERC721Token is ERC165, IERC721 {
     }
 
     function isContract(address account) internal view returns (bool) {
-        uint size;
-        assembly { 
-            size := extcodesize(account) 
+        uint256 size;
+        assembly {
+            size := extcodesize(account)
         }
         return (size > 0);
     }
@@ -151,10 +154,10 @@ contract ERC721Token is ERC165, IERC721 {
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual {
-        // Hook que se llama antes de cualquier transferencia de tokens. 
+        // Hook que se llama antes de cualquier transferencia de tokens.
         // Puede ser utilizado para implementar lógica adicional, como restricciones de transferencia o eventos personalizados.
     }
-    
+
     function burn(uint256 tokenId) public {
         address owner = ownerOf(tokenId);
         require(msg.sender == owner, "ERC721 ERROR: Caller is not token owner");
@@ -167,5 +170,4 @@ contract ERC721Token is ERC165, IERC721 {
 
         emit Transfer(owner, address(0), tokenId);
     }
-
 }

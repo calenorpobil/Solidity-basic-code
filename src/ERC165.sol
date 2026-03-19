@@ -22,5 +22,4 @@ contract ERC165 is IERC165 {
         require(interfaceId != 0xffffffff, "ERC165: invalid interface id");
         _supportedInterfaces[interfaceId] = true;
     }
-
 }

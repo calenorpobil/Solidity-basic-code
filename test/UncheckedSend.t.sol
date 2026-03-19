@@ -3,7 +3,6 @@ pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
 import "../src/UncheckedSend.sol";
-import "forge-std/console2.sol";
 
 contract UncheckedSendVulnerabilityTest is Test {
     UncheckedSendVulnerability public uncheckedSendVulnerability;
